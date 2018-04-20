@@ -12,3 +12,4 @@
 - [x] tag
 - [x] slider
 - [x] timeline
+- [x] upload

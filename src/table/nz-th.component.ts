@@ -109,6 +109,15 @@ export class NzThComponent {
   hasFilterValue = false;
   multipleFilterList: NzThItemInterface[] = [];
   singleFilterList: NzThItemInterface[] = [];
+
+  @Output() nzCheckedChange = new EventEmitter<boolean>();
+  @ViewChild(NzDropDownComponent) nzDropDownComponent: NzDropDownComponent;
+  @Output() nzSortChange = new EventEmitter<string>();
+  @Output()
+  nzSortChangeWithKey = new EventEmitter<{ key: string; value: string }>();
+  /* tslint:disable-next-line:no-any */
+  @Output() nzFilterChange = new EventEmitter<any[] | any>();
+  
   /* tslint:disable-next-line:no-any */
   @Input() nzSelections: Array<{ text: string; onSelect: any }> = [];
   @Input() nzChecked = false;
@@ -117,13 +126,7 @@ export class NzThComponent {
   @Input() nzSortKey: string;
   @Input() nzFilterMultiple = true;
   @Input() nzWidth: string;
-  @Output() nzCheckedChange = new EventEmitter<boolean>();
-  @ViewChild(NzDropDownComponent) nzDropDownComponent: NzDropDownComponent;
-  @Output() nzSortChange = new EventEmitter<string>();
-  @Output()
-  nzSortChangeWithKey = new EventEmitter<{ key: string; value: string }>();
-  /* tslint:disable-next-line:no-any */
-  @Output() nzFilterChange = new EventEmitter<any[] | any>();
+  
 
   @Input()
   set nzShowSort(value: boolean) {

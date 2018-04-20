@@ -87,16 +87,20 @@ export class NzSwitchComponent implements OnInit, ControlValueAccessor {
   constructor(public render: MeepoRender) {}
 
   setCheckView(e) {
-    let { selector } = this.children.checkedView;
-    if (selector) {
-      this.render.compiler(this.children.checkedView, e).subscribe();
+    if(this.children){
+      let { selector } = this.children.checkedView;
+      if (selector) {
+        this.render.compiler(this.children.checkedView, e).subscribe();
+      }
     }
   }
 
   setUnCheckView(e) {
-    let { selector } = this.children.unCheckedView;
-    if (selector) {
-      this.render.compiler(this.children.unCheckedView, e).subscribe();
+    if(this.children){
+      let { selector } = this.children.unCheckedView;
+      if (selector) {
+        this.render.compiler(this.children.unCheckedView, e).subscribe();
+      }
     }
   }
 

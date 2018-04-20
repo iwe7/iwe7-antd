@@ -84,10 +84,22 @@ export class NzUploadComponent implements OnInit, OnChanges, OnDestroy {
   private progressTimer: any;
   /** @private */
   @ViewChild('upload') upload: NzUploadBtnComponent;
+  @Output()
+  nzFileListChange: EventEmitter<UploadFile[]> = new EventEmitter<
+    UploadFile[]
+  >();
 
+  @Output()
+  nzChange: EventEmitter<UploadChangeParam> = new EventEmitter<
+    UploadChangeParam
+  >();
+
+  private _disabled = false;
   // region: fields
-  @Input() nzType: UploadType = 'select';
   private _limit: number = 0;
+  private _showBtn = true;
+
+  @Input() nzType: UploadType = 'select';
   @Input()
   set nzLimit(value: number) {
     this._limit = toNumber(value, null);
@@ -115,12 +127,7 @@ export class NzUploadComponent implements OnInit, OnChanges, OnDestroy {
   @Input() nzData: {} | ((file: UploadFile) => {});
   @Input() nzFilter: UploadFilter[] = [];
   @Input() nzFileList: UploadFile[] = [];
-  @Output()
-  nzFileListChange: EventEmitter<UploadFile[]> = new EventEmitter<
-    UploadFile[]
-  >();
 
-  private _disabled = false;
   @Input()
   set nzDisabled(value: boolean) {
     this._disabled = toBoolean(value);
@@ -153,7 +160,6 @@ export class NzUploadComponent implements OnInit, OnChanges, OnDestroy {
     return this._showUploadList;
   }
 
-  private _showBtn = true;
   @Input()
   set nzShowButton(value: boolean) {
     this._showBtn = toBoolean(value);
@@ -173,11 +179,6 @@ export class NzUploadComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() nzRemove: ((file: UploadFile) => boolean) | Observable<boolean>;
   @Input() nzPreview: (file: UploadFile) => void;
-
-  @Output()
-  nzChange: EventEmitter<UploadChangeParam> = new EventEmitter<
-    UploadChangeParam
-  >();
 
   /** @private */
   _btnOptions: ZipButtonOptions;
